@@ -1,0 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@200..900&display=swap');
+
+body {
+  overflow-x: hidden;
+  font-family: "Inconsolata", serif;
+  font-optical-sizing: auto;
+  font-weight: weight;
+  font-style: normal;
+}

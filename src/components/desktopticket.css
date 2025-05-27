@@ -1,0 +1,222 @@
+.deskticket-container {
+    background-image: url('../assets/background-desktop.png');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    padding: 30px 20px;
+    text-align: center;
+    color: whitesmoke;
+    box-sizing: border-box;
+}
+
+/* Logo */
+.logo img {
+    width: 150px;
+    margin-bottom: 20px;
+}
+
+/* Text Section */
+.deskticket-text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.deskticket-text h3 {
+    max-width: 600px;
+    font-size: 2rem;
+    line-height: 1.4;
+}
+
+.deskticket-text p {
+    max-width: 400px;
+    font-size: 1rem;
+    margin-top: 10px;
+}
+
+.deskticket-text span {
+    background: linear-gradient(90deg, #ff6a3d, #eed2ca, #eed2ca);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 600;
+}
+
+/* Ticket Container */
+.deskticket-info-cont {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.deskticket-pattern {
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    height: 200px;
+    margin: 0 auto;
+    background: url("../assets/pattern-ticket.svg") no-repeat center/contain;
+}
+
+/* Date Info */
+.deskticket-date {
+    position: absolute;
+    top: 10px;
+    left: 100px;
+    text-align: left;
+}
+
+.deskticket-date img {
+    width: 150px;
+}
+
+.deskticket-date p {
+    font-size: 14px;
+    margin-top: 4px;
+    color: white;
+}
+
+/* User Info */
+.deskticket-info {
+    position: absolute;
+    bottom: 20px;
+    left: 100px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.deskticket-user-img img {
+    width: 60px;
+    height: 60px;
+    border-radius: 10px;
+}
+
+.deskticket-user-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.deskticket-user-info p {
+    margin: 0;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.deskticket-user-info span {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 14px;
+    color: #ccc;
+}
+
+.deskticket-user-info img {
+    width: 14px;
+    height: 14px;
+}
+
+/* Responsive */
+@media (max-width: 630px) {
+   .deskticket-text h3 {
+    font-size: 1.8rem;
+   }
+    .deskticket-date {
+    left: 80px;
+    }
+    .deskticket-date {
+        top: 25px;
+    }
+    .deskticket-date img {
+        width: 120px;
+    }
+    .deskticket-info {
+    left: 80px;
+    }
+    .deskticket-user-img img {
+        width: 40px;
+        height: 40px;
+    }
+    .deskticket-user-info p {
+        font-size: 14px;
+}
+}
+@media (max-width: 600px) {
+   .deskticket-text h3 {
+    font-size: 1.5rem;
+   }
+    .deskticket-date {
+    left: 70px;
+    }
+    .deskticket-date {
+        top: 25px;
+    }
+    .deskticket-date img {
+        width: 120px;
+    }
+    .deskticket-info {
+        left: 70px;
+    }
+}
+@media (max-width: 580px) {
+
+    .deskticket-date {
+    left: 60px;
+    }
+
+    .deskticket-info {
+    left: 60px;
+    }
+
+}
+@media (max-width: 560px) {
+
+    .deskticket-date {
+    left: 50px;
+    }
+
+    .deskticket-info {
+    left: 50px;
+    }
+
+}
+@media (max-width: 540px) {
+
+    .deskticket-date {
+    left: 40px;
+    }
+
+    .deskticket-info {
+    left: 40px;
+    }
+
+}
+@media (max-width: 520px) {
+
+    .deskticket-date {
+    left: 30px;
+    }
+
+    .deskticket-info {
+    left: 30px;
+    }
+
+}
+@media (max-width: 500px) {
+    .deskticket-container {
+    padding: 20px 10px;
+}
+    .deskticket-pattern {
+        width: 90%;
+    }
+    .deskticket-date {
+        left: 20px;
+    }
+
+    .deskticket-info {
+        left: 20px;
+    }
+}
+

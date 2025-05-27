@@ -1,0 +1,15 @@
+.loading-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: black;
+    color: white;
+    height: 100vh;
+}
+
+.loading-container img {
+    width: 80px;
+    margin-bottom: 40px;
+    margin-top: 40px;
+}

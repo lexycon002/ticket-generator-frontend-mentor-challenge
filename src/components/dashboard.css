@@ -1,0 +1,237 @@
+.dashboard-container {
+    background-image: url('../assets/background-desktop.png');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100vw;
+    height: 100vh;
+    padding-bottom: 20px;
+    position: relative;
+    overflow: hidden;
+}
+.dashboard-wrap-cont {
+    background-image: url('../assets/pattern-lines.svg');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.dashboard {
+    display: flex;
+    justify-content: center;
+    padding-top: 1rem;
+}
+
+.dashboard-text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.dashboard-text h1 {
+    font-size: 2rem;
+    color: white;
+    /* width: 700px; */
+}
+.dashboard-wrap h1:nth-child(2) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.dashboard-wrap p {
+    color: rgb(218, 213, 213);
+    display: flex;
+    justify-content: center;
+}
+.dash-text {
+    color:rgb(218, 213, 213);
+    padding-bottom:0;
+    margin-bottom: 0.5rem;
+}
+.dashboard-input-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.dashboard-input-img {
+    width:30px;
+    height: 70px;
+    display: flex;
+    color:white;
+    background-color: rgb(49, 47, 49);
+    border-radius: 10%;
+    margin-top: 12px;
+    cursor: pointer;
+}
+.upload-box {
+    position:relative;
+    width:300px;
+    height:70px;
+    border: 1px dashed grey;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    color: #666;
+    border-radius: 10px;
+    background-size: cover;
+    background-position: center;
+    overflow:hidden;
+    padding-bottom: 12px;
+}
+.upload-options {
+    display: flex;
+    justify-content: space-between;
+    width:80%;
+}
+.upload-options p {
+    cursor: pointer;
+    text-decoration: underline;
+    font-size:15px;
+
+}
+.dash-label-text {
+    margin-top: 0.4rem;
+    color:rgb(218, 213, 213);
+    font-size: 0.8rem;
+}
+
+.hidden {
+    display: none;
+}
+.dash-upload {
+    display: flex;
+    align-items: center;
+    margin-top: 0.6rem;
+}
+.dash-upload span {
+    font-size: 10px;
+    color:rgb(218, 213, 213);
+    margin-left: 0.5rem;
+    letter-spacing: 0.02rem;
+}
+.dash-upload .error-message {
+    color:#F57463;
+    font-size: 10px;
+}
+.dashboard-user-details-container {
+    display: flex;
+    flex-direction: column;
+    width:300px;
+    margin-top:0.5rem;
+}
+.dashboard-user-details-container p {
+    color:rgb(218, 213, 213);
+    margin-bottom: 0.5rem;
+    font-size: 0.8rem;
+}
+.dashboard-user-details-container input {
+    background: transparent;
+    height:30px;
+    border-radius:8px;
+    outline: 0.2px thin rgb(133, 104, 133);
+    border: 1px solid gray;
+    color: white;
+    padding-left: 0.4rem;
+}
+.dashboard-user-details-container input:focus {
+    border: 1px solid #F57463;
+    outline: none;
+}
+.dash-button button {
+    width:300px;
+    height:38px;
+    border-radius:8px;
+    margin-top: 1.2rem;
+    background-color: #F57463;
+    border: none;
+    text-transform: capitalize;
+    color: black;
+    font-weight: bold;
+    font-size: 0.8rem;
+    cursor: pointer;
+}
+.dash-background-img {
+    position: absolute;
+    top:50%;
+}
+.dash-background-img img {
+    height:400px;
+    width:400px;
+}
+
+@media screen and (max-width:550px) {
+    .dashboard-text h1 {
+        font-size: 1.4rem;
+    }
+    .dash-background-img {
+        top:70%;
+    }
+    .dash-background-img img {
+        height:200px;
+        width:200px;
+    }
+    .dashboard-wrap {
+        display: flex;
+        flex-direction: column;
+        /* justify-content: center; */
+        align-items: center;
+    }
+}
+@media screen and (max-width:500px) {
+.dashboard-text p {
+    font-size: 0.9rem;
+}
+
+}
+@media screen and (max-width:460px) {
+    .dashboard img {
+        width:150px;
+    }
+    .dashboard-text h1 {
+        font-size: 1rem;
+    }
+
+.dashboard-text p {
+    font-size: 0.85rem;
+}
+
+}
+@media screen and (max-width:425px) {
+    .dashboard-text h1 {
+        font-size: 1rem;
+    }
+    .dashboard img {
+        width: 8rem;
+    }
+    .dashboard-text h1 {
+        margin-top: 1.2rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .dashboard-wrap p {
+        font-size: 0.6rem;
+    }
+    .dashboard-input p {
+        font-size: 0.75rem;
+    }
+    .dashboard-user-details-container p {
+        font-size: 0.75rem;
+    }
+    .dashboard-user-details-container input:focus {
+        font-size: 0.85rem;
+    }
+}
+@media screen and (max-width:360px) {
+    .upload-box {
+        width:250px;
+    }
+    .dashboard-user-details-container {
+        width:250px;
+    }
+    .dash-button button {
+        width:250px;
+    }
+}
