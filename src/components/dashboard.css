@@ -226,6 +226,20 @@
 }
 @media screen and (max-width:360px) {
     .upload-box {
+        width:270px;
+    }
+    .dashboard-user-details-container {
+        width:270px;
+    }
+    .dash-button button {
+        width:270px;
+    }
+}
+@media screen and (max-width:330px) {
+    .dash-upload span {
+        font-size:0.55rem;
+    }
+    .upload-box {
         width:250px;
     }
     .dashboard-user-details-container {
@@ -233,5 +247,12 @@
     }
     .dash-button button {
         width:250px;
+    }
+    .dashboard-wrap p {
+        width:200px;
+        text-align: center;
+    }
+    .dash-label-text {
+        font-size: 0.7rem;
     }
 }

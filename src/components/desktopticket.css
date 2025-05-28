@@ -219,4 +219,50 @@
         left: 20px;
     }
 }
+@media (max-width: 430px) {
+    .deskticket-pattern {
+        width: 80%;
+    }
+    .deskticket-date {
+        left: 20px;
+        top: 40px;
+    }
+
+    .deskticket-info {
+        left: 20px;
+        bottom: 35px;
+    }
+    
+.deskticket-text h3 {
+    font-size: 1.2rem;
+}
+}
+@media (max-width: 400px) {
+    .deskticket-date {
+        left: 10px;
+        top: 45px;
+    }
+    .deskticket-date p {
+        font-size: 0.6em;
+    }
+
+    .deskticket-info {
+        left: 10px;
+        bottom: 45px;
+    }
+    
+.deskticket-text h3 {
+    font-size: 1.2rem;
+}
+}
+@media (max-width: 360px) {
+    .deskticket-pattern {
+        width: 90%;
+    }
+}
+@media (max-width: 330px) {
+    .deskticket-pattern {
+        width: 95%;
+    }
+}
 

@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import "./dashboard.css";
-import { IoIosClose } from "react-icons/io";
 import logoImg from "../assets/logo-full.svg";
 import ImageInput from "../assets/icon-upload.svg";
 import uploadImg from "../assets/icon-info.svg";
@@ -11,8 +10,8 @@ import { useNavigate } from "react-router-dom";
 function Dashboard() {
   const [image, setImage] = useState(null);
   const [error, setError] = useState("");
-  const[showTicket, setShowTicket] = useState(false);
-  const[isLoading, setIsLoading] = useState(false);
+  const [showTicket, setShowTicket] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [isDragging, setIsDragging] = useState(false);
 
   const[fullName, setFullName] = useState("");
