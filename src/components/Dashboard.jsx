@@ -1,76 +1,93 @@
-import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState } from "react";
+import "./dashboard.css";
 import logoImg from "../assets/logo-full.svg";
 import ImageInput from "../assets/icon-upload.svg";
 import uploadImg from "../assets/icon-info.svg";
 import dashImage from "../assets/pattern-squiggly-line-bottom-desktop.svg";
 import loader from "../assets/loader.gif";
-import "./dashboard.css";
-import "./loading.css";
-
-const INPUT_FIELDS = [
-  { label: "Full Name", type: "text", key: "fullName" },
-  { label: "Email Address", type: "email", key: "email" },
-  { label: "Github Username", type: "text", key: "github" },
-];
+import { useNavigate } from "react-router-dom";
 
 function Dashboard() {
-  const [formData, setFormData] = useState({ fullName: "", email: "", github: "" });
   const [image, setImage] = useState(null);
   const [error, setError] = useState("");
+  const [showTicket, setShowTicket] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isDragging, setIsDragging] = useState(false);
-  const navigate = useNavigate();
 
-  const updateField = (key, value) => {
-    setFormData((prev) => ({ ...prev, [key]: value }));
-  };
+  const[fullName, setFullName] = useState("");
+  const[email, setEmail] = useState("");
+  const[github, setGithub] = useState("");
 
-  const validateFields = () => {
-    const { fullName, email, github } = formData;
-    const emailExp = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    const githubExp = /^[a-zA-Z0-9-]{1,39}$/;
+  const navigate = useNavigate()
 
-    if (!fullName || !email || !github || !image) {
-      return "All fields are required and image must be uploaded";
-    }
-    if (!emailExp.test(email)) return "Please enter a valid email address";
-    if (!githubExp.test(github)) return "Please enter a valid GitHub username (no special characters)";
 
-    return null;
-  };
-
-  const processFile = (file) => {
-    if (file && file.size <= 500 * 1024 && ["image/jpeg", "image/png"].includes(file.type)) {
-      setError("");
-      const reader = new FileReader();
-      reader.onloadend = () => setImage(reader.result);
-      reader.readAsDataURL(file);
-    } else {
-      setError("Invalid file. Please upload JPEG or PNG under 500KB");
-    }
-  };
 
   const handleDrop = (e) => {
-    e.preventDefault();
-    setIsDragging(false);
-    const file = e.dataTransfer.files[0];
-    processFile(file);
-  };
+      e.preventDefault();
+      setIsDragging(false);
+      const file = e.dataTransfer.files[0];
+      processFile(file);
+  }
 
-  const handleImageChange = (e) => processFile(e.target.files[0]);
+  const handleDragOver = (e) => {
+  e.preventDefault();
+  setIsDragging(true);
+};
+
+const handleDragLeave = () => {
+  setIsDragging(false);
+};
+
+const processFile = (file) => {
+  if (file) {
+    if (file.size > 500 * 1024) {
+      setError("File too large. please upload a photo under 500KB");
+      return;
+    }
+    setError("");
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      setImage(reader.result);
+    };
+    reader.readAsDataURL(file);
+  }
+};
+
+const handleImageChange = (event) => {
+  const file = event.target.files[0];
+  processFile(file);
+};
+
+  const handleCloseBtn = (e) => {
+    e.stopPropagation();
+    setImage(null);
+  }
 
   const handleGenerateTicket = () => {
-    const errorMsg = validateFields();
-    if (errorMsg) {
-      setError(errorMsg);
+    if (!fullName || !email || !github || !image) {
+      setError("All fields are required and image must be uploaded")
       return;
     }
 
-    localStorage.setItem("formData", JSON.stringify({ ...formData, image }));
-    setIsLoading(true);
-    setTimeout(() => navigate("/loading"), 500);
-  };
+    const emailExp = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if(!emailExp.test(email)) {
+      setError("Please enter a valid email address")
+      return;
+    }
+
+    const githubExp = /^[a-zA-Z0-9-]{1,39}$/;
+    if ( !githubExp.test(github)) {
+      setError("Please enter a valid github address")
+      return;
+    }
+
+    localStorage.setItem("formData", JSON.stringify({ fullName, email, github, image }));
+        setTimeout(()=> {
+          setIsLoading(true);
+          navigate("/loading");
+          setShowTicket(true);
+        }, 500);
+  }
 
   return (
     <div className="dashboard-container">
@@ -79,68 +96,94 @@ function Dashboard() {
           <img src={logoImg} alt="coding curf" />
         </div>
         <div className="dashboard-text">
+        <div className="dashboard-wrap">
           <h1>Your Journey to Start Coding Conf</h1>
           <h1>2025 Start Here!</h1>
           <p>Secure your spot at next year's biggest coding conference</p>
         </div>
-
-        <div className="dashboard-input-wrap">
-          <div className="dashboard-input">
-            <p className="dash-text">Upload Avatar</p>
-            <div
-              className={`upload-box ${isDragging ? "dragging" : ""}`}
-              onClick={() => document.getElementById("file-input").click()}
-              onDragOver={(e) => { e.preventDefault(); setIsDragging(true); }}
-              onDragLeave={() => setIsDragging(false)}
-              onDrop={handleDrop}
-            >
-              {image ? <img src={image} alt="Avatar" className="dashboard-input-img" /> : <img src={ImageInput} alt="Upload Icon" className="dashboard-input-img" />}
-              {image && (
-                <div className="upload-options">
-                  <div className="remove-img-option img-option" onClick={(e) => { e.stopPropagation(); setImage(null); }}>
+      </div>
+      <div className="dashboard-input-wrap">
+        <div className="dashboard-input">
+          <p className="dash-text">Upload Avatar</p>
+          <div className={`upload-box ${isDragging ? "dragging" : ""}`}
+            onClick={() => document.getElementById("file-input").click()}
+            onDragOver={handleDragOver}
+            onDragLeave={handleDragLeave}
+            onDrop={handleDrop}
+          >
+            {image ? (
+              <img src={image} alt="Uploaded Avatar" className="dashboard-input-img" />
+            ) : (
+              <img src={ImageInput} alt="Upload Icon" className="dashboard-input-img"/>
+            )}
+            {image && (
+              <div className="upload-options">
+                  <div className="remove-img-option img-option" onClick={handleCloseBtn}>
                     <p>Remove Image</p>
                   </div>
-                </div>
-              )}
-              {!image && <span className="dash-label-text">Drag and drop or click to upload</span>}
-            </div>
+                  <div className="change-img-option img-option">
+                    <p>Change Image</p>
+                  </div>
+              </div>
+            )}
+            {!image && <span className="dash-label-text">Drag and drop or click to upload</span> }
+          </div>
             <div className="dash-upload">
-              <img src={uploadImg} alt="upload info" />
-              {error ? <p className="error-message">{error}</p> : <span>Upload JPEG or PNG (max-size: 500KB)</span>}
+              <img src={uploadImg} alt="upload-image"  />
+              {error ? (
+                <p className="error-message">{error}</p> 
+              ) : 
+              <span>upload your photos (JPEG or PNG, max-size: 500KB)</span>
+              }
             </div>
-            <input type="file" id="file-input" accept="image/*" className="hidden" onChange={handleImageChange} />
-          </div>
-
-          <div className="dashboard-user-details-container">
-            {INPUT_FIELDS.map(({ label, type, key }) => (
-              <React.Fragment key={key}>
-                <label><p>{label}</p></label>
-                <input
-                  type={type}
-                  className="user-input"
-                  value={formData[key]}
-                  onChange={(e) => updateField(key, e.target.value)}
-                />
-              </React.Fragment>
-            ))}
-          </div>
-
-          <div className="dash-button">
-            <button onClick={handleGenerateTicket} disabled={isLoading}>
-              {isLoading ? "Generating..." : "Generate my ticket"}
-            </button>
-          </div>
+          <input
+            type="file"
+            id="file-input"
+            accept="image/*"
+            className="hidden"
+            onChange={handleImageChange}
+          />
         </div>
-
-        <div className="dash-background-img">
-          <img src={dashImage} alt="background" />
-        </div>
+      <div className="dashboard-user-details-container">
+        <label htmlFor=""><p>Full Name</p></label>
+        <input type="text" 
+        className="user-input"
+        onChange={(e)=> setFullName(e.target.value)}
+        />
+        <label htmlFor=""><p>Email Address</p></label>
+        <input type="email" 
+        className="user-input"
+        onChange={(e) => setEmail(e.target.value)}
+        />
+        <label htmlFor=""><p>Github Username</p></label>
+        <input type="text" 
+        className="user-input"
+        onChange={(e) => setGithub(e.target.value)}
+        />
       </div>
-
-      {isLoading && (
+      <div className="dash-button">
+        <button onClick={handleGenerateTicket}>Generate my ticket</button>
+      </div>
+      </div>
+      <div className="dash-background-img">
+        <img src={dashImage} alt="dashboard background image" />
+      </div>
+      </div>
+      {isLoading && 
         <div className="loading-container">
-          <img src={loader} alt="Loading..." />
-          <p>Generating your ticket, please wait....</p>
+          <img src={loader} alt="loading..." />
+          <p>Generating your ticket,please wait....</p>
+    </div>
+      }
+        {showTicket && !isLoading && (
+        <div className="ticket-container">
+          <h2>Your Ticket</h2>
+          {image && (
+            <img src={image} alt="User Avatar" className="ticket-avatar" />
+          )}
+          <p><strong>Name:</strong> {fullName}</p>
+          <p><strong>Email:</strong> {email}</p>
+          <p><strong>GitHub:</strong> {github}</p>
         </div>
       )}
     </div>
@@ -148,4 +191,3 @@ function Dashboard() {
 }
 
 export default Dashboard;
-
