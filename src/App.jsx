@@ -7,7 +7,7 @@ import Loading from './components/Loading';
 function App() {
 
   return (
-      <div>
+      <div className="app">
         <Router>
         <Routes>
           <Route path="/" element={<Dashboard />} />

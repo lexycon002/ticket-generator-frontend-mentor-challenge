@@ -10,7 +10,7 @@ function Loading() {
 
         const timer = setTimeout(()=> {
             navigate("/ticket");
-        }, 1000);
+        }, 5000);
 
         return () => clearTimeout(timer);
     },[navigate]);

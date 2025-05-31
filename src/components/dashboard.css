@@ -7,7 +7,7 @@
     height: 100vh;
     padding-bottom: 20px;
     position: relative;
-    overflow: hidden;
+    overflow-y: hidden;
 }
 .dashboard-wrap-cont {
     background-image: url('../assets/pattern-lines.svg');
@@ -54,19 +54,28 @@
     justify-content: center;
 }
 .dashboard-input-img {
-    width:30px;
-    height: 70px;
+    width:50px;
+    height:150px;
+    object-fit: contain;
     display: flex;
     color:white;
     background-color: rgb(49, 47, 49);
     border-radius: 10%;
-    margin-top: 12px;
+    margin-top: 20px;
+    margin-bottom: 12px;
     cursor: pointer;
+}
+
+.img-option p {
+    background-color: #818181;
+    color: rgb(199, 193, 193);
+    padding: 5px;
+    border-radius: 5px;
 }
 .upload-box {
     position:relative;
     width:300px;
-    height:70px;
+    height:100px;
     border: 1px dashed grey;
     display: flex;
     flex-direction: column;
